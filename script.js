@@ -32,7 +32,7 @@ function findRoundWinner(playerSelection, computerSelection) {
       case "paper":
         return "You Win! Scissors beats Paper";
       case "rock":
-        return "You Lose! Rock beats Scissors"
+        return "You Lose! Rock beats Scissors";
       case "scissors":
         return "Draw! Scissors ties Scissors";
       default:
@@ -63,24 +63,30 @@ function game() {
     let roundWinString = findRoundWinner(playerSel, getComputerChoice());
     let resultString = roundWinString.split("!")[0];
 
-    console.log(`Round ${roundCount}: ${roundWinString}`)
+    console.log(`Round ${roundCount}: ${roundWinString}`);
     roundCount++;
 
-    if (resultString == 'You Win'){
+    if (resultString == "You Win") {
       playerCount++;
-    } else if (resultString == 'You Lose') {
+    } else if (resultString == "You Lose") {
       computerCount++;
     }
   }
-  
+
   if (playerCount > computerCount) {
-    console.log(`You won the game! You win: ${playerCount} to ${computerCount}`)
-  } else if (computerCount > playerCount){
-    console.log(`You lost the game! You lost: ${computerCount} to ${playerCount}`)
+    console.log(
+      `You won the game! You win: ${playerCount} to ${computerCount}`
+    );
+  } else if (computerCount > playerCount) {
+    console.log(
+      `You lost the game! You lost: ${computerCount} to ${playerCount}`
+    );
   } else {
-    console.log(`Game is a Draw! ${playerCount} to ${computerCount}`)
+    console.log(
+      `Game is a Draw! ${playerCount} to ${computerCount}`
+    );
   }
 }
 
 const playerSel = prompt("Enter rock, paper, or scissors:");
- game();
+game();
