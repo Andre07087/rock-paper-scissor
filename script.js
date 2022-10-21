@@ -85,5 +85,6 @@ function game() {
   }
 }
 
-const playerSel = prompt("Enter rock, paper, or scissors:");
+const playerInput = prompt("Enter rock, paper, or scissors:");
 game();
+
