@@ -19,7 +19,7 @@ function findRoundWinner(playerSelection, computerSelection) {
   if (playerSelection.toLowerCase() == "rock") {
     switch (computerSelection) {
       case "scissors":
-        return "You Win! Rock beats Sciccors";
+        return "You Win! Rock beats Scissors";
       case "paper":
         return "You Lose! Paper beats Rock";
       case "rock":
@@ -54,10 +54,6 @@ function findRoundWinner(playerSelection, computerSelection) {
   }
 }
 
-const playerSel = "scissors";
-
-// console.log(findRoundWinner(playerSel, getComputerChoice()));
-
 function game() {
   let computerCount = 0;
   let playerCount = 0;
@@ -85,4 +81,6 @@ function game() {
     console.log(`Game is a Draw! ${playerCount} to ${computerCount}`)
   }
 }
+
+const playerSel = prompt("Enter rock, paper, or scissors:");
  game();
