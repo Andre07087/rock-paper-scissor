@@ -58,21 +58,20 @@ function game() {
   let computerCount = 0;
   let playerCount = 0;
   let roundCount = 1;
-
+  // Loop through each round and keep count of wins
   for (let i = 0; i < 5; i++) {
     let roundWinString = findRoundWinner(playerSel, getComputerChoice());
     let resultString = roundWinString.split("!")[0];
-
+    // Report round winner
     console.log(`Round ${roundCount}: ${roundWinString}`);
     roundCount++;
-
+    // Keep track of wins
     if (resultString == "You Win") {
       playerCount++;
     } else if (resultString == "You Lose") {
       computerCount++;
     }
   }
-
   if (playerCount > computerCount) {
     console.log(
       `You won the game! You win: ${playerCount} to ${computerCount}`
@@ -82,9 +81,7 @@ function game() {
       `You lost the game! You lost: ${computerCount} to ${playerCount}`
     );
   } else {
-    console.log(
-      `Game is a Draw! ${playerCount} to ${computerCount}`
-    );
+    console.log(`Game is a Draw! ${playerCount} to ${computerCount}`);
   }
 }
 
