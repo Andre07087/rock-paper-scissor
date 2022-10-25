@@ -16,36 +16,51 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  if (playerSelection.toLowerCase() == "rock") {
+  if (playerSelection == "rock") {
     switch (computerSelection) {
       case "scissors":
-        return "You Win! Rock beats Scissors";
+        printResultToDom('You Win! Rock beats Scissors')
+        increasePlayerScore()
+        break;
       case "paper":
-        return "You Lose! Paper beats Rock";
+        printResultToDom('You Lose! Paper beats Rock')
+        increaseComputerScore()
+        break;
       case "rock":
-        return "Draw! Rock ties Rock";
+        printResultToDom('Draw! Rock ties Rock')
+        break;
       default:
         console.warn("error rock vs computer");
     }
-  } else if (playerSelection.toLowerCase() == "scissors") {
+  } else if (playerSelection == "scissors") {
     switch (computerSelection) {
       case "paper":
-        return "You Win! Scissors beats Paper";
+        printResultToDom('You Win! Scissors beats Paper')
+        increasePlayerScore()
+        break;
       case "rock":
-        return "You Lose! Rock beats Scissors";
+        printResultToDom('You Lose! Rock beats Scissors')
+        increaseComputerScore()
+        break;
       case "scissors":
-        return "Draw! Scissors ties Scissors";
+        printResultToDom('Draw! Scissors ties Scissors')
+        break;
       default:
         console.warn("error scissors vs computer");
     }
-  } else if (playerSelection.toLowerCase() == "paper") {
+  } else if (playerSelection == "paper") {
     switch (computerSelection) {
       case "rock":
-        return "You Win! Paper beats Rock";
+        printResultToDom('You Win! Paper beats Rock')
+        increasePlayerScore()
+        break;
       case "scissors":
-        return "You Lose! Scissors beats Paper";
+        printResultToDom('You Lose! Scissors beats Paper')
+        increaseComputerScore()
+        break;
       case "paper":
-        return "Draw! Paper ties Paper";
+        printResultToDom('Draw! Paper ties Paper')
+        break;
       default:
         console.log("error paper vs computer");
     }
@@ -85,21 +100,28 @@ function game() {
   }
 }
 
-
 function printResultToDom (result) {
-  const resultSection = document.querySelector('#result-p')
-  resultSection.textContent = result
+  resultParagraphDom.textContent = result
 }
 
-// const sectionList = document.querySelectorAll('section')
+function increaseComputerScore () {
+  computerCount++;
+  computerScoreDom.textContent = computerCount
+}
 
+function increasePlayerScore () {
+  playerCount++;
+  playerScoreDom.textContent = playerCount
+}
 
-const resultStringg = "Heeyyyo rock won"
-printResultToDom(resultStringg)
 // const playerInput = prompt("Enter rock, paper, or scissors:");
 // game();
-
+const resultParagraphDom = document.querySelector('#result-p')
+const computerScoreDom = document.querySelector('#computer-score')
+const playerScoreDom = document.querySelector('#player-score')
 const buttons = document.querySelectorAll('button');
+let computerCount = 0;
+let playerCount = 0;
 
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
