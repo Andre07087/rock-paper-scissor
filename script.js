@@ -85,6 +85,17 @@ function game() {
   }
 }
 
+
+function printResultToDom (result) {
+  const resultSection = document.querySelector('#result-p')
+  resultSection.textContent = result
+}
+
+// const sectionList = document.querySelectorAll('section')
+
+
+const resultStringg = "Heeyyyo rock won"
+printResultToDom(resultStringg)
 // const playerInput = prompt("Enter rock, paper, or scissors:");
 // game();
 
@@ -96,12 +107,15 @@ buttons.forEach((button) => {
     // on click run function
     if (button.id == 'rockBtn'){
       console.log('rock button pressed')
+      playRound('rock', getComputerChoice())
     }
-    if (button.id == 'paperBtn'){
-      console.log('rock button pressed')
+    else if (button.id == 'paperBtn'){
+      console.log('paper button pressed')
+      playRound('paper', getComputerChoice())
     }
-    if (button.id == 'scissBtn'){
-      console.log('rock button pressed')
+    else if (button.id == 'scissBtn'){
+      console.log('scissors button pressed')
+      playRound('scissors', getComputerChoice())
     }
   })
 })
