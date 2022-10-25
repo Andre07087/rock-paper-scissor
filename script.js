@@ -15,7 +15,7 @@ function getComputerChoice() {
   return ans;
 }
 
-function findRoundWinner(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
   if (playerSelection.toLowerCase() == "rock") {
     switch (computerSelection) {
       case "scissors":
@@ -60,7 +60,7 @@ function game() {
   let roundCount = 1;
   // Loop through each round and keep count of wins
   for (let i = 0; i < 5; i++) {
-    let roundWinString = findRoundWinner(playerSel, getComputerChoice());
+    let roundWinString = playRound(playerSel, getComputerChoice());
     let resultString = roundWinString.split("!")[0];
     // Report round winner
     console.log(`Round ${roundCount}: ${roundWinString}`);
@@ -85,6 +85,23 @@ function game() {
   }
 }
 
-const playerInput = prompt("Enter rock, paper, or scissors:");
-game();
+// const playerInput = prompt("Enter rock, paper, or scissors:");
+// game();
 
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    console.log(button.id)
+    // on click run function
+    if (button.id == 'rockBtn'){
+      console.log('rock button pressed')
+    }
+    if (button.id == 'paperBtn'){
+      console.log('rock button pressed')
+    }
+    if (button.id == 'scissBtn'){
+      console.log('rock button pressed')
+    }
+  })
+})
