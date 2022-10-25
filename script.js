@@ -19,15 +19,15 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection == "rock") {
     switch (computerSelection) {
       case "scissors":
-        printResultToDom('You Win! Rock beats Scissors')
-        increaseScore('player')
+        printResultToDom("You Win! Rock beats Scissors");
+        increaseScore("player");
         break;
       case "paper":
-        printResultToDom('You Lose! Paper beats Rock')
-        increaseScore('computer')
+        printResultToDom("You Lose! Paper beats Rock");
+        increaseScore("computer");
         break;
       case "rock":
-        printResultToDom('Draw! Rock ties Rock')
+        printResultToDom("Draw! Rock ties Rock");
         break;
       default:
         console.warn("error rock vs computer");
@@ -35,15 +35,15 @@ function playRound(playerSelection, computerSelection) {
   } else if (playerSelection == "scissors") {
     switch (computerSelection) {
       case "paper":
-        printResultToDom('You Win! Scissors beats Paper')
-        increaseScore('player')
+        printResultToDom("You Win! Scissors beats Paper");
+        increaseScore("player");
         break;
       case "rock":
-        printResultToDom('You Lose! Rock beats Scissors')
-        increaseScore('computer')
+        printResultToDom("You Lose! Rock beats Scissors");
+        increaseScore("computer");
         break;
       case "scissors":
-        printResultToDom('Draw! Scissors ties Scissors')
+        printResultToDom("Draw! Scissors ties Scissors");
         break;
       default:
         console.warn("error scissors vs computer");
@@ -51,15 +51,15 @@ function playRound(playerSelection, computerSelection) {
   } else if (playerSelection == "paper") {
     switch (computerSelection) {
       case "rock":
-        printResultToDom('You Win! Paper beats Rock')
-        increaseScore('player')
+        printResultToDom("You Win! Paper beats Rock");
+        increaseScore("player");
         break;
       case "scissors":
-        printResultToDom('You Lose! Scissors beats Paper')
-        increaseScore('computer')
+        printResultToDom("You Lose! Scissors beats Paper");
+        increaseScore("computer");
         break;
       case "paper":
-        printResultToDom('Draw! Paper ties Paper')
+        printResultToDom("Draw! Paper ties Paper");
         break;
       default:
         console.log("error paper vs computer");
@@ -100,81 +100,78 @@ function game() {
   }
 }
 
-function printResultToDom (result) {
-  resultParagraphDom.textContent = result
+function printResultToDom(result) {
+  resultParagraphDom.textContent = result;
 }
 
-function increaseScore (winner) {
-  if (winner == 'computer') {
+function increaseScore(winner) {
+  if (winner == "computer") {
     computerCount++;
-    computerScoreDom.textContent = computerCount
+    computerScoreDom.textContent = computerCount;
   } else {
     playerCount++;
-    playerScoreDom.textContent = playerCount
+    playerScoreDom.textContent = playerCount;
   }
-  checkWinner()
+  checkWinner();
 }
 
-function checkWinner () {
+function checkWinner() {
   if (computerCount == 5) {
-    gameWinnerDom.textContent = 'You Lose!'
-    appendTryAgainBtn()
-  } else if (playerCount == 5){
-    gameWinnerDom.textContent = 'You Win!!!'
-    appendTryAgainBtn()
-    // TODO: add try again, clear score
+    gameWinnerDom.textContent = "You Lose!";
+    appendTryAgainBtn();
+  } else if (playerCount == 5) {
+    gameWinnerDom.textContent = "You Win!!!";
+    appendTryAgainBtn();
   }
 }
 
-function tryAgain () {
-  computerCount = 0
-  playerCount = 0
-  computerScoreDom.textContent = computerCount
-  playerScoreDom.textContent = playerCount
-  gameWinnerDom.textContent = ''
-  resultParagraphDom.textContent = ''
+function tryAgain() {
+  computerCount = 0;
+  playerCount = 0;
+  computerScoreDom.textContent = computerCount;
+  playerScoreDom.textContent = playerCount;
+  gameWinnerDom.textContent = "";
+  resultParagraphDom.textContent = "";
 }
 
-function appendTryAgainBtn () {
-  const buttonEl = document.createElement("button")
-  buttonEl.textContent = "Try Again"
-  buttonEl.setAttribute('id','try-again-btn');
-  tryAgainDiv.appendChild(buttonEl)
+function appendTryAgainBtn() {
+  const buttonEl = document.createElement("button");
+  buttonEl.textContent = "Try Again";
+  buttonEl.setAttribute("id", "try-again-btn");
+  tryAgainDiv.appendChild(buttonEl);
 
-  buttonEl.addEventListener ('click', () => {
-    tryAgain()
-    const tryAgainBtn = document.querySelector('#try-again-btn')
-    tryAgainBtn.remove()
-  })
+  buttonEl.addEventListener("click", () => {
+    tryAgain();
+    const tryAgainBtn = document.querySelector("#try-again-btn");
+    tryAgainBtn.remove();
+  });
 }
 
 // const playerInput = prompt("Enter rock, paper, or scissors:");
 // game();
-const resultParagraphDom = document.querySelector('#result-p')
-const gameWinnerDom = document.querySelector('#game-winner')
-const computerScoreDom = document.querySelector('#computer-score')
-const playerScoreDom = document.querySelector('#player-score')
-const tryAgainDiv = document.querySelector('#try-again-div')
-const buttons = document.querySelectorAll('button');
+const resultParagraphDom = document.querySelector("#result-p");
+const gameWinnerDom = document.querySelector("#game-winner");
+const computerScoreDom = document.querySelector("#computer-score");
+const playerScoreDom = document.querySelector("#player-score");
+const tryAgainDiv = document.querySelector("#try-again-div");
+const buttons = document.querySelectorAll("button");
 let computerCount = 0;
 let playerCount = 0;
 
 buttons.forEach((button) => {
-  console.log(button)
-  button.addEventListener('click', () => {
-    console.log(button.id)
+  console.log(button);
+  button.addEventListener("click", () => {
+    console.log(button.id);
     // on click run function
-    if (button.id == 'rock-btn'){
-      console.log('rock button pressed')
-      playRound('rock', getComputerChoice())
+    if (button.id == "rock-btn") {
+      console.log("rock button pressed");
+      playRound("rock", getComputerChoice());
+    } else if (button.id == "paper-btn") {
+      console.log("paper button pressed");
+      playRound("paper", getComputerChoice());
+    } else if (button.id == "sciss-btn") {
+      console.log("scissors button pressed");
+      playRound("scissors", getComputerChoice());
     }
-    else if (button.id == 'paper-btn'){
-      console.log('paper button pressed')
-      playRound('paper', getComputerChoice())
-    }
-    else if (button.id == 'sciss-btn'){
-      console.log('scissors button pressed')
-      playRound('scissors', getComputerChoice())
-    }
-  })
-})
+  });
+});
