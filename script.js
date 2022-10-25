@@ -20,11 +20,11 @@ function playRound(playerSelection, computerSelection) {
     switch (computerSelection) {
       case "scissors":
         printResultToDom('You Win! Rock beats Scissors')
-        increasePlayerScore()
+        increaseScore('player')
         break;
       case "paper":
         printResultToDom('You Lose! Paper beats Rock')
-        increaseComputerScore()
+        increaseScore('computer')
         break;
       case "rock":
         printResultToDom('Draw! Rock ties Rock')
@@ -36,11 +36,11 @@ function playRound(playerSelection, computerSelection) {
     switch (computerSelection) {
       case "paper":
         printResultToDom('You Win! Scissors beats Paper')
-        increasePlayerScore()
+        increaseScore('player')
         break;
       case "rock":
         printResultToDom('You Lose! Rock beats Scissors')
-        increaseComputerScore()
+        increaseScore('computer')
         break;
       case "scissors":
         printResultToDom('Draw! Scissors ties Scissors')
@@ -52,11 +52,11 @@ function playRound(playerSelection, computerSelection) {
     switch (computerSelection) {
       case "rock":
         printResultToDom('You Win! Paper beats Rock')
-        increasePlayerScore()
+        increaseScore('player')
         break;
       case "scissors":
         printResultToDom('You Lose! Scissors beats Paper')
-        increaseComputerScore()
+        increaseScore('computer')
         break;
       case "paper":
         printResultToDom('Draw! Paper ties Paper')
@@ -104,38 +104,75 @@ function printResultToDom (result) {
   resultParagraphDom.textContent = result
 }
 
-function increaseComputerScore () {
-  computerCount++;
-  computerScoreDom.textContent = computerCount
+function increaseScore (winner) {
+  if (winner == 'computer') {
+    computerCount++;
+    computerScoreDom.textContent = computerCount
+  } else {
+    playerCount++;
+    playerScoreDom.textContent = playerCount
+  }
+  checkWinner()
 }
 
-function increasePlayerScore () {
-  playerCount++;
+function checkWinner () {
+  if (computerCount == 5) {
+    gameWinnerDom.textContent = 'You Lose!'
+    appendTryAgainBtn()
+  } else if (playerCount == 5){
+    gameWinnerDom.textContent = 'You Win!!!'
+    appendTryAgainBtn()
+    // TODO: add try again, clear score
+  }
+}
+
+function tryAgain () {
+  computerCount = 0
+  playerCount = 0
+  computerScoreDom.textContent = computerCount
   playerScoreDom.textContent = playerCount
+  gameWinnerDom.textContent = ''
+  resultParagraphDom.textContent = ''
+}
+
+function appendTryAgainBtn () {
+  const buttonEl = document.createElement("button")
+  buttonEl.textContent = "Try Again"
+  buttonEl.setAttribute('id','try-again-btn');
+  tryAgainDiv.appendChild(buttonEl)
+
+  buttonEl.addEventListener ('click', () => {
+    tryAgain()
+    const tryAgainBtn = document.querySelector('#try-again-btn')
+    tryAgainBtn.remove()
+  })
 }
 
 // const playerInput = prompt("Enter rock, paper, or scissors:");
 // game();
 const resultParagraphDom = document.querySelector('#result-p')
+const gameWinnerDom = document.querySelector('#game-winner')
 const computerScoreDom = document.querySelector('#computer-score')
 const playerScoreDom = document.querySelector('#player-score')
+const tryAgainDiv = document.querySelector('#try-again-div')
 const buttons = document.querySelectorAll('button');
 let computerCount = 0;
 let playerCount = 0;
 
 buttons.forEach((button) => {
+  console.log(button)
   button.addEventListener('click', () => {
     console.log(button.id)
     // on click run function
-    if (button.id == 'rockBtn'){
+    if (button.id == 'rock-btn'){
       console.log('rock button pressed')
       playRound('rock', getComputerChoice())
     }
-    else if (button.id == 'paperBtn'){
+    else if (button.id == 'paper-btn'){
       console.log('paper button pressed')
       playRound('paper', getComputerChoice())
     }
-    else if (button.id == 'scissBtn'){
+    else if (button.id == 'sciss-btn'){
       console.log('scissors button pressed')
       playRound('scissors', getComputerChoice())
     }
