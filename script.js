@@ -162,7 +162,6 @@ buttons.forEach((button) => {
   console.log(button);
   button.addEventListener("click", () => {
     console.log(button.id);
-    // on click run function
     if (button.id == "rock-btn") {
       console.log("rock button pressed");
       playRound("rock", getComputerChoice());
